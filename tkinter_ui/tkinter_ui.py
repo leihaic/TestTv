@@ -58,19 +58,18 @@ class TkinterUI:
             "response_time_weight": self.default_ui.response_time_weight_scale.get(),
             "resolution_weight": self.default_ui.resolution_weight_scale.get(),
             "ipv_type": self.default_ui.ipv_type_combo.get(),
-            "domain_blacklist": self.default_ui.domain_blacklist_text.get(1.0, tk.END),
             "url_keywords_blacklist": self.default_ui.url_keywords_blacklist_text.get(
                 1.0, tk.END
             ),
             "open_subscribe": self.subscribe_ui.open_subscribe_var.get(),
             "subscribe_urls": self.subscribe_ui.subscribe_urls_text.get(1.0, tk.END),
             "open_multicast": self.multicast_ui.open_multicast_var.get(),
-            "open_multicast_tonkiang": self.multicast_ui.open_multicast_tonkiang_var.get(),
+            "open_multicast_foodie": self.multicast_ui.open_multicast_foodie_var.get(),
             "open_multicast_fofa": self.multicast_ui.open_multicast_fofa_var.get(),
             "multicast_region_list": self.multicast_ui.region_list_combo.get(),
             "multicast_page_num": self.multicast_ui.page_num_entry.get(),
             "open_hotel": self.hotel_ui.open_hotel_var.get(),
-            "open_hotel_tonkiang": self.hotel_ui.open_hotel_tonkiang_var.get(),
+            "open_hotel_foodie": self.hotel_ui.open_hotel_foodie_var.get(),
             "open_hotel_fofa": self.hotel_ui.open_hotel_fofa_var.get(),
             "hotel_region_list": self.hotel_ui.region_list_combo.get(),
             "hotel_page_num": self.hotel_ui.page_num_entry.get(),
@@ -113,8 +112,9 @@ class TkinterUI:
             self.progress_label.pack_forget()
 
     def on_run_update(self):
+        loop = asyncio.new_event_loop()
+
         def run_loop():
-            loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
             loop.run_until_complete(self.run_update())
 
